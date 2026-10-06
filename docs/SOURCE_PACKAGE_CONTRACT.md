@@ -22,7 +22,7 @@ python scripts/verify_public_contract.py
 Live export (AppID supplied via HOUJIN_APP_ID, never in parameters or output):
 
 ```sh
-go run ./cmd/ja-company-export -from 2026-09-01 -to 2026-09-30 \
+go run ./cmd/company-catalog -from 2026-09-01 -to 2026-09-30 \
   -prefecture 13 -format json -output companies.json
 ```
 
