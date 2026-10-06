@@ -1,0 +1,33 @@
+name: E2E
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 毎週月曜 09:00 JST (= 00:00 UTC) に upstream API への疎通確認を回す
+    - cron: "0 0 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e
+  cancel-in-progress: false
+
+jobs:
+  e2e:
+    name: E2E against 法人番号 Web-API
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: ${{ github.repository_owner != '' }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/go
+      - name: Run E2E tests
+        env:
+          HOUJIN_APP_ID: ${{ secrets.HOUJIN_APP_ID }}
+        run: |
+          if [ -z "$HOUJIN_APP_ID" ]; then
+            echo "::warning::HOUJIN_APP_ID secret is not set. Skipping E2E."
+            exit 0
+          fi
+          make test-e2e
