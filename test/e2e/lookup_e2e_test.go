@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 const (
