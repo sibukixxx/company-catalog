@@ -7,7 +7,7 @@ import (
 	"io"
 	"os"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 func handoff(r io.Reader, w io.Writer) error {
