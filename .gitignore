@@ -1,0 +1,40 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+coverage.html
+
+# `go build ./examples/<name>` は実行ディレクトリにバイナリを置くため、
+# うっかり commit しないように明示的に弾く。
+/lookup_by_number
+/search_by_name
+/build_sales_list
+/fetch_diff
+
+# Dependency directories
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+
+# Local env
+.env
+.env.local
+
+# Fetched seed fixtures (real API responses - run `make seed` to regenerate)
+testdata/seed/
+
+# AI scratchpad (globally gitignored)
+z-ai/

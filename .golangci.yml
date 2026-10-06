@@ -1,0 +1,57 @@
+version: "2"
+run:
+  modules-download-mode: readonly
+  allow-parallel-runners: true
+linters:
+  default: none
+  # 方針:
+  # - default で有効な linter は全部入れる
+  # - autofix できる linter を入れる
+  # - SDK としての堅牢性に効く linter を入れる
+  enable:
+    # Default
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+
+    # Autofix / 品質
+    - copyloopvar
+    - dupword
+    - errorlint
+    - fatcontext
+    - gocritic
+    - intrange
+    - mirror
+    - misspell
+    - nakedret
+    - nolintlint
+    - perfsprint
+    - usestdlibvars
+    - usetesting
+    - whitespace
+
+    # SDK / API クライアント向け
+    - bodyclose
+    - contextcheck
+    - durationcheck
+    - errname
+    - noctx
+    - rowserrcheck
+    - unparam
+  exclusions:
+    rules:
+      - path: _test\.go
+        linters:
+          - errcheck
+          - gocritic
+          - unparam
+      - path: scripts/
+        linters:
+          - errcheck
+          - gocritic
+formatters:
+  enable:
+    - gofumpt
+    - goimports
