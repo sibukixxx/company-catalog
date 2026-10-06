@@ -1,6 +1,6 @@
 # Analysis export contract (`techvit.analysis.company/v1`)
 
-`ja-company-base` は国税庁 法人番号システム Web-API 専用の source adapter であり、
+`company-catalog` は国税庁 法人番号システム Web-API 専用の source adapter であり、
 分析用途向けに `AnalysisRecord` を CSV / JSONL として出力する。本書はその出力ファイルの
 契約を定める。downstream の分析ツール（Insight Lab 等）は Go module に依存せず、
 **本書のファイル契約だけ** で出力を読めることを目的とする。
