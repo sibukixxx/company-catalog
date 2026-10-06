@@ -20,7 +20,7 @@ package saleslead
 import (
 	"strings"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 // ProspectStatus は営業リスト 1 件の進捗ステータス。
