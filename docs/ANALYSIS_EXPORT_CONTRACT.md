@@ -75,7 +75,7 @@ corporate_number,name,kind,prefecture_code,prefecture_name,city_code,city_name,a
 
 ## 4. Manifest（任意）
 
-`ja-company-export -manifest <path>` を指定すると、データ本体の書き込み完了後に manifest
+`company-catalog -manifest <path>` を指定すると、データ本体の書き込み完了後に manifest
 JSON を別ファイルとして出力する。データの書き込みに失敗した場合、manifest は書かれない。
 
 ```json
@@ -152,7 +152,7 @@ downstream reader に求めること:
 downstream は Go module に依存せず、ファイルだけを受け取る。
 
 ```bash
-HOUJIN_APP_ID=xxx go run ./cmd/ja-company-export \
+HOUJIN_APP_ID=xxx go run ./cmd/company-catalog \
   -from 2026-01-01 -to 2026-06-30 -prefecture 13 \
   -format jsonl -output companies.jsonl \
   -manifest companies.manifest.json
