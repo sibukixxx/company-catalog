@@ -221,7 +221,7 @@ export-analysis: ## Export NTA updates as CSV/JSONL or Source Package JSON (FROM
 		echo "ERROR: FROM_DATE and TO_DATE are required."; \
 		exit 1; \
 	fi
-	go run ./cmd/ja-company-export \
+	go run ./cmd/company-catalog \
 		-from "$(FROM_DATE)" \
 		-to "$(TO_DATE)" \
 		-format "$(FORMAT)" \
