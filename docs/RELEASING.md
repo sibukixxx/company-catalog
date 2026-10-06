@@ -1,40 +1,32 @@
-# Release policy — tagを動かさず互換性を記録する
+# Release policy
 
-既存のv0.1.0 tagを維持します。Source Packageと今回のOSS整備を含む次version候補はv0.2.0です。
-これは提案で、tag/Release作成やvisibility変更はmaintainerが行います。
+`company-catalog` is a fresh repository. Historical tags from the former repository are not carried forward.
 
 ## Versioning
 
-| 対象 | 方針 |
-| --- | --- |
-| Go module v0.x | APIは発展中。互換性を優先し、breaking changeはminor更新とCHANGELOGで明記 |
-| Go module v1.x以降 | public Go APIのbreaking changeはmajor更新。additive featureはminor、fixはpatch |
-| AnalysisRecord / Source Package schema | module versionと独立。field意味の変更・rename/removeは新schema version |
-| normalization semantics | NormalizationVersionとdefinition revisionを変更。観測データの変化と区別 |
-| tag | immutable。既存versionを差し替えない |
+- The first public release candidate is **v0.1.0**.
+- Pre-1.0 minor releases may include breaking Go API changes; document them in CHANGELOG.
+- File/schema versions (AnalysisRecord, Source Package, normalization semantics) evolve independently from the Go module version.
+- Published tags are immutable.
 
-現在のAnalysisSchemaVersionのadditive-change方針はANALYSIS_EXPORT_CONTRACT.mdを優先します。
-Source Package readerは認識するschema/normalization versionのみ受け付けます。
-SDKとschemaのversionが同じ番号になる保証はありません。
+## Before a release
 
-## Release前の確認
+1. Run the offline test/race/vet/build/lint suite on the exact commit to be tagged.
+2. Run a current-tree secret scan and Go vulnerability scan.
+3. Review LICENSE, third-party licenses, NTA terms/attribution and public fixtures.
+4. Verify README installation and offline quick-start commands from a clean clone.
+5. Verify the OSS release gate in [OSS_RELEASE_GATE.md](OSS_RELEASE_GATE.md).
+6. After the repository is public, confirm CI and pkg.go.dev resolution.
+7. Tag the reviewed commit and create the GitHub Release.
 
-1. review済みPRをmainへ反映し、mainでtest/race/vet、build、lint、offline Examplesとpublic schema検証を実行。
-2. current-tree secret scanとGo vulnerability scan。原Git履歴の全branch/tagを取得しfull-history scan。
-3. LICENSE、third-party license、source terms/attribution、fixtureの出典を確認。
-4. CHANGELOGの対象commitと既存tagとの差分を確認し、release notesへknown limitationsを記載。
-5. OSS_RELEASE_GATE.mdのmaintainer checklistを終え、公開後のCI/pkg.go.devを確認。
-6. review済みcommitへv0.2.0（提案）をtagし、GitHub Releaseを作成。
+Live API/E2E checks require an authorized `HOUJIN_APP_ID`. If they are not run, state that explicitly in the release notes.
 
-この手順は認証情報や取得データの公開を承認するものではありません。
-通常testはofflineです。live API/E2Eはauthorized AppIDと明示enableがある場合にだけ実行し、未実施ならrelease notesへ記載します。
+## Release-note limitations
 
-## Release notesへ残す制約
-
-- AppIDは別途取得。SDKにcredentialは付属しない。
-- source-specificなprojectionであり、industry/website/contact/売上のenrichmentはない。
-- optional upstream値の省略/空tagをrecord v1は区別できない。unavailableを0やknown-emptyへ補完しない。
-- COMPLETEは指定したAPI traversalの成功。全日本法人の完全な母集団や上流データの真偽を保証しない。
-- record limitは取得後に適用。retryは未実装、cacheはLookupのみ。
-- Public Engine fixtureはrequest schema適合で、live research実行の証明ではない。
-- Delta algorithm (#8)は未実装で、OSS公開の必須条件にはしない。
+- An NTA AppID is not bundled with the SDK.
+- This is a source-specific company-data producer; it does not provide industry, website, contact or revenue enrichment.
+- Missing upstream values remain missing; they are not coerced to zero or known-empty.
+- `COMPLETE` means the requested API traversal completed, not that the upstream source is a perfect census.
+- Retry remains unimplemented where documented; cache coverage is intentionally limited.
+- Public Engine fixtures validate contract compatibility only; they do not prove a live research execution.
+- Snapshot delta comparison remains tracked separately and is not required for the first public release.
