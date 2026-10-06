@@ -161,7 +161,7 @@ DBを参照せず、`ReadCompanySourcePackage`でversion・provenance・hash・�
 
 ```sh
 # Live export; HOUJIN_APP_ID is already set.
-go run ./cmd/ja-company-export -from 2026-09-01 -to 2026-09-30 \
+go run ./cmd/company-catalog -from 2026-09-01 -to 2026-09-30 \
   -prefecture 13 -format json -output companies.json
 ```
 
