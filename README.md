@@ -1,38 +1,67 @@
-# company-catalog
+# Company Catalog
 
 <!-- oss-readme-intro:v1 -->
-国税庁の法人番号Web-APIから日本企業データを取得し、**型付き・出典付き・再利用可能なデータ**として扱うGo SDK / CLIです。
+国税庁の法人番号Web-APIから日本企業データを取得し、**型付き・出典付き・再利用可能なデータ**として扱う Go SDK / CLI です。
 
-### こんな人向け
+## What it does
 
-- 法人番号や法人名から企業情報を取得したい
-- CRM・営業・分析へ渡す前に、企業データを正規化して出典を残したい
-- CSV / JSONL / versioned JSON packageとして再利用したい
-- 実APIを呼ばずにfixtureやmockで組み込みを試したい
+- 法人番号から1社を取得
+- 法人名・都道府県などで企業を検索
+- 指定期間の更新法人を取得
+- 取得元・取得時刻を provenance として保持
+- CSV / JSONL / Source Package v1 へ deterministic export
+- Mock / synthetic fixture で実APIなしにテスト
 
-### できること
+CRM、営業スコアリング、企業情報の推測補完は行いません。**公的データを取得・正規化し、他のシステムへ安全に渡すところまで**がこのツールの役割です。
 
-法人番号・法人名・更新期間での取得、pagination、XML解析、取得時刻とprovenanceの保持、Source Package v1 / CSV / JSONL export、offline fixture / mockによるcontract検証を提供します。CRM、営業判断、曖昧企業名matchingや企業情報の自動補完はこのツールの責務ではありません。
+## Install
 
-### 最短で試す
+Go 1.26.8+ が必要です。
 
 ```sh
 git clone https://github.com/sibukixxx/company-catalog.git
 cd company-catalog
+go build ./cmd/company-catalog
+```
+
+Go SDKとして利用する場合、公開後は通常の Go module として導入できます。
+
+```sh
+go get github.com/sibukixxx/company-catalog@latest
+```
+
+## Quick start
+
+AppIDなしで、付属fixtureを使ってすぐに試せます。
+
+```sh
 go run ./examples/read_source_package docs/examples/company-source-package.v1.json
 ```
 
-実APIを使う場合は `HOUJIN_APP_ID` を環境変数に設定します。SDKとして使う場合は現在の公開tagを指定してください。
+国税庁Web-APIを使う場合は `HOUJIN_APP_ID` を環境変数へ設定します。
 
 ```sh
-go get github.com/sibukixxx/company-catalog@v0.1.0
+export HOUJIN_APP_ID=...
+go run ./examples/lookup_by_number 1180301018771
+go run ./examples/search_by_name トヨタ自動車 23
 ```
 
-### 使いどころ
+更新法人をファイルへ出力する例:
 
-「公的な企業データを取得して、そのまま業務ロジックへ混ぜず、**出典付きの入力データとして他システムへ渡したい**」ときに使います。
+```sh
+go run ./cmd/company-catalog \
+  -from 2026-09-01 \
+  -to 2026-09-30 \
+  -prefecture 13 \
+  -format json \
+  -output companies.json
+```
 
-詳しいAPI、export contract、security、release手順は [SDK reference](docs/SDK_REFERENCE.md)、[Source Package contract](docs/SOURCE_PACKAGE_CONTRACT.md)、[Documentation](docs/) を参照してください。
+## When to use it
+
+企業マスタ同期、公開データ分析、営業・調査システムへの入力などで、**「どこから取得した企業データかを追跡できる状態で渡したい」**ときに使います。
+
+詳しい仕様は [SDK Reference](docs/SDK_REFERENCE.md)、[Source Package Contract](docs/SOURCE_PACKAGE_CONTRACT.md)、[Data Source & Attribution](docs/DATA_SOURCE_AND_ATTRIBUTION.md) を参照してください。
 <!-- /oss-readme-intro -->
 
 
@@ -66,7 +95,7 @@ If ownership is unclear, implement the smallest vertical slice in the nearest ex
 - `CompanyProfile` data can be exported as validated Source Package v1 or as versioned CSV/JSONL analytical records with provenance and manifests.
 - Offline synthetic fixtures, mock clients and contract examples allow the public API and export boundary to be verified without an AppID; live verification remains explicitly credential-gated.
 - This repository is a **company-data producer**, not a CRM or enrichment product: fuzzy matching, website/revenue enrichment, outreach decisions and sales history remain downstream concerns.
-- OSS preparation (MIT, security/contribution docs, release gate and examples) is present, but the current repository stays private while history/identity cleanup and the `company-catalog` migration are completed.
+- MIT license, security/contribution docs, offline fixtures and release-gate documentation are present. Public release is performed only after the release gate is verified.
 <!-- /current-implementation -->
 
 
