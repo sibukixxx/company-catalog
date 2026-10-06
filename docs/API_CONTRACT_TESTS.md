@@ -178,9 +178,9 @@
 
 ```
 $ make test-cover
-github.com/sibukixxx/ja-company-base                     coverage: 95.4%
-github.com/sibukixxx/ja-company-base/adapters/saleslead  coverage: 100.0%
-github.com/sibukixxx/ja-company-base/internal/xmlapi     coverage: 100.0%
+github.com/sibukixxx/company-catalog                     coverage: 95.4%
+github.com/sibukixxx/company-catalog/adapters/saleslead  coverage: 100.0%
+github.com/sibukixxx/company-catalog/internal/xmlapi     coverage: 100.0%
 ```
 
 カバーされていない残り 4.6%（client.go の `do` の retry/HTTP 構築失敗パス等）は、
