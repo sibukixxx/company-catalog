@@ -14,7 +14,7 @@ Use GitHub's private security reporting feature when available for this reposito
 
 The Japanese National Tax Agency Corporate Number Web API AppID must be treated as a secret.
 
-`ja-company-base` is designed so that:
+`company-catalog` is designed so that:
 
 - AppID values are supplied by the consuming application
 - AppID values are not included in normal error messages
