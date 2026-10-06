@@ -160,7 +160,7 @@ API 呼び出しを減らしたい場合、`MemoryCache` を `Config.Cache` に�
 import (
 	"time"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 cache := houjin.NewMemoryCache(houjin.MemoryCacheOptions{
