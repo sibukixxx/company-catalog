@@ -1,0 +1,13 @@
+{
+  "schema": "techvit.analysis.company/v1",
+  "source": "houjin_bangou",
+  "source_version": "v4",
+  "format": "jsonl",
+  "query": {
+    "from": "2026-01-01",
+    "to": "2026-06-30",
+    "prefecture": "13"
+  },
+  "generated_at": "2026-07-01T00:00:00Z",
+  "record_count": 1234
+}
