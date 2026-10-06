@@ -47,7 +47,7 @@ Do not label normalized source markers as inferred business events.
    is part of this implementation.
 4. Verify workflows on the public repo and pkg.go.dev availability; add description
    and topics; optionally enable private vulnerability reporting.
-5. Follow [RELEASING.md](RELEASING.md). Existing v0.1.0 is immutable; the recommended first public release candidate is v0.2.0. No tag or release is created by this work. Tag/release the reviewed version. Outreach can then replace its existing sibling
+5. Follow [RELEASING.md](RELEASING.md). This fresh repository does not inherit historical tags. The recommended first public release candidate is v0.1.0 after the release gate passes. Outreach can then replace its existing sibling
    module replace with the published version in a separate downstream change.
 
 Live API/E2E checks require an authorized HOUJIN_APP_ID and explicit E2E enablement;
@@ -58,7 +58,7 @@ were unavailable for this connector-based implementation.
 
 Main at `4d1467ac16a8a17c707d0152f8753885f393ed6c` already contains Source
 Package v1 and the pinned Insight public-contract fixture. Both repositories
-passed test/build/lint before the release-preparation changes. Issues #5/#6
+passed test/build/lint before the release-preparation changes. the implemented Source Package/export work
 are evaluated against that main, independently of the preparation PR.
 
 The preparation changes add an offline-first README, examples index, executable
