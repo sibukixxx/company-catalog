@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for considering a contribution to `ja-company-base`.
+Thank you for considering a contribution to `company-catalog`.
 
 This project is intentionally a small Go SDK around the Japanese National Tax Agency Corporate Number Web API. Keep changes focused on that boundary.
 
