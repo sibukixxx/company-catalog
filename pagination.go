@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/sibukixxx/ja-company-base/internal/xmlapi"
+	"github.com/sibukixxx/company-catalog/internal/xmlapi"
 )
 
 // 国税庁 Web-API の分割応答に対する安全装置。
