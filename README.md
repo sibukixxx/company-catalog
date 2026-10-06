@@ -1,4 +1,4 @@
-# ja-company-base
+# company-catalog
 
 <!-- oss-readme-intro:v1 -->
 国税庁の法人番号Web-APIから日本企業データを取得し、**型付き・出典付き・再利用可能なデータ**として扱うGo SDK / CLIです。
@@ -18,7 +18,7 @@
 
 ```sh
 git clone https://github.com/sibukixxx/company-catalog.git
-cd ja-company-base
+cd company-catalog
 go run ./examples/read_source_package docs/examples/company-source-package.v1.json
 ```
 
@@ -35,9 +35,6 @@ go get github.com/sibukixxx/company-catalog@v0.1.0
 詳しいAPI、export contract、security、release手順は [SDK reference](docs/SDK_REFERENCE.md)、[Source Package contract](docs/SOURCE_PACKAGE_CONTRACT.md)、[Documentation](docs/) を参照してください。
 <!-- /oss-readme-intro -->
 
-
-> [!NOTE]
-> **Repository transition:** this repository remains the canonical source until the planned migration to `company-catalog`. The replacement repository will be created from cleaned history after verification. Until then, commands, module paths and links in this README intentionally use the current repository name.
 
 
 <!-- ecosystem-expansion:v1 -->
@@ -83,7 +80,7 @@ AppIDがなくても、合成fixtureとMockClientでcontractを試せます。
 
 ## Scope — 取得・正規化・出力を担当します
 
-NTA Corporate Number API → ja-company-base → typed Company / versioned Source Package → 任意のconsumer
+NTA Corporate Number API → company-catalog → typed Company / versioned Source Package → 任意のconsumer
 
 | SDKが担当すること | consumerが担当すること |
 | --- | --- |
@@ -103,7 +100,7 @@ Public化前のcloneには、このrepoへのアクセス権が必要です。
 
 ```sh
 git clone https://github.com/sibukixxx/company-catalog.git
-cd ja-company-base
+cd company-catalog
 go run ./examples/read_source_package docs/examples/company-source-package.v1.json
 ```
 
