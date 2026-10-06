@@ -12,7 +12,7 @@ import (
 	"os"
 	"time"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 func main() {
