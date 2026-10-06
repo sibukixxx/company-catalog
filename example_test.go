@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 func ExampleReadCompanySourcePackage() {
