@@ -3,8 +3,8 @@ package saleslead_test
 import (
 	"testing"
 
-	houjin "github.com/sibukixxx/ja-company-base"
-	"github.com/sibukixxx/ja-company-base/adapters/saleslead"
+	houjin "github.com/sibukixxx/company-catalog"
+	"github.com/sibukixxx/company-catalog/adapters/saleslead"
 )
 
 func sampleProfile(corp, name, kind, closeDate string) houjin.CompanyProfile {
