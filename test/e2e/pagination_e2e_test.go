@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 // 分割応答の自動結合を実 API で確認する。
