@@ -7,7 +7,7 @@ import (
 	"io"
 	"os"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 func run(args []string, out io.Writer) error {
