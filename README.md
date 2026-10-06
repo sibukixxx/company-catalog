@@ -17,7 +17,7 @@
 ### 最短で試す
 
 ```sh
-git clone https://github.com/sibukixxx/ja-company-base.git
+git clone https://github.com/sibukixxx/company-catalog.git
 cd ja-company-base
 go run ./examples/read_source_package docs/examples/company-source-package.v1.json
 ```
@@ -25,7 +25,7 @@ go run ./examples/read_source_package docs/examples/company-source-package.v1.js
 実APIを使う場合は `HOUJIN_APP_ID` を環境変数に設定します。SDKとして使う場合は現在の公開tagを指定してください。
 
 ```sh
-go get github.com/sibukixxx/ja-company-base@v0.1.0
+go get github.com/sibukixxx/company-catalog@v0.1.0
 ```
 
 ### 使いどころ
@@ -102,7 +102,7 @@ Goの必要versionは[go.mod](go.mod)に記載しています（現在Go 1.26.8�
 Public化前のcloneには、このrepoへのアクセス権が必要です。
 
 ```sh
-git clone https://github.com/sibukixxx/ja-company-base.git
+git clone https://github.com/sibukixxx/company-catalog.git
 cd ja-company-base
 go run ./examples/read_source_package docs/examples/company-source-package.v1.json
 ```
@@ -140,14 +140,14 @@ Lookupは法人番号・法人名・所在地・更新日を、Searchは候補�
 
 ```sh
 # Public化前は認証済みprivate module設定が必要です。
-go get github.com/sibukixxx/ja-company-base@v0.1.0
+go get github.com/sibukixxx/company-catalog@v0.1.0
 ```
 
 `v0.1.0`は既存tagのcore APIを指します。このREADMEのSource Packageと新しいExamplesは現mainの機能です。
 公開前の新version候補は[release方針](docs/RELEASING.md)を参照してください。
 
 ```go
-import houjin "github.com/sibukixxx/ja-company-base"
+import houjin "github.com/sibukixxx/company-catalog"
 
 client, err := houjin.NewClient(houjin.Config{AppID: os.Getenv("HOUJIN_APP_ID")})
 // Check err before calling client methods.
@@ -185,7 +185,7 @@ AnalysisRecordの名称は既存API名であり、分析結果やResearch結論�
 | public APIと対応test | [API contract tests](docs/API_CONTRACT_TESTS.md) |
 | Insight公開schemaへのfile-only handoff | [Examples](examples/README.md)、[schema出典](docs/contracts/README.md) |
 | snapshotと将来のDeltaの区別 | [Snapshot revisions](docs/SNAPSHOT_REVISIONS.md) |
-| package/API reference | `go doc .`、公開後の[pkg.go.dev](https://pkg.go.dev/github.com/sibukixxx/ja-company-base) |
+| package/API reference | `go doc .`、公開後の[pkg.go.dev](https://pkg.go.dev/github.com/sibukixxx/company-catalog) |
 
 ## Security — AppIDとraw transport情報を公開しない
 
@@ -215,5 +215,5 @@ SDKコードはMIT。NTA由来データ/APIの利用条件は提供元に従い�
 [release方針](docs/RELEASING.md)、[OSS release gate](docs/OSS_RELEASE_GATE.md)を参照してください。
 Public化・初回公開Releaseはmaintainerの作業として残しています。
 
-利用上の質問・再現可能な不具合は[Issues](https://github.com/sibukixxx/ja-company-base/issues)へ。
+利用上の質問・再現可能な不具合は[Issues](https://github.com/sibukixxx/company-catalog/issues)へ。
 秘密情報を含む報告は公開Issueへ貼らず、SECURITY.mdのprivate報告手順を使ってください。
