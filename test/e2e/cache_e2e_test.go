@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 // 実 API + MemoryCache + ReadThrough の組み合わせで、
