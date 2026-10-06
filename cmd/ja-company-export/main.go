@@ -9,7 +9,7 @@ import (
 	"os"
 	"time"
 
-	houjin "github.com/sibukixxx/ja-company-base"
+	houjin "github.com/sibukixxx/company-catalog"
 )
 
 const appIDEnv = "HOUJIN_APP_ID"
