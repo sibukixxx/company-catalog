@@ -1,4 +1,4 @@
-# ja-company-base
+# company-catalog
 
 Go library/CLI foundation for acquiring and normalizing Japanese corporate-number data. Public API behavior and reproducible fixtures are more important than convenience shortcuts around the upstream API.
 
