@@ -1,3 +1,3 @@
-module github.com/sibukixxx/ja-company-base
+module github.com/sibukixxx/company-catalog
 
 go 1.26.8
