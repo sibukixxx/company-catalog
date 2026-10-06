@@ -81,8 +81,7 @@ seed path. Do not silently substitute synthetic data for an acquired golden.
 
 Public GoDoc includes a runnable ExampleReadCompanySourcePackage. Keep README,
 examples and public contracts paired with behavior. See docs/RELEASING.md for
-module/schema versioning and CHANGELOG.md for the existing v0.1.0 tag and next
-candidate v0.2.0. Do not move tags or change visibility as part of a code PR.
+module/schema versioning and CHANGELOG.md for the fresh-repository initial release candidate v0.1.0. Do not move tags or change visibility as part of a code PR.
 
 The third-party Insight public schema retains Apache-2.0 in docs/contracts;
 NTA data terms remain separate from the SDK's MIT license. See
