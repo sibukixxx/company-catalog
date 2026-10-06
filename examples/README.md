@@ -12,7 +12,7 @@ SDKの型を確認したい場合は先頭2本を実行し、live APIやdownstre
 | Live: `lookup_by_number` | 13桁番号で1件取得 | 必要 | 必要 | 法人番号、名称、住所、更新日 |
 | Live: `search_by_name` | upstream name matchingと地域filter | 必要 | 必要 | 候補件数・番号・名称・住所 |
 | Live: `fetch_diff` | 指定期間のupstream更新情報を読む | 必要 | 必要 | 期間、件数、先頭最大5件 |
-| Live export: `cmd/ja-company-export` | CSV/JSONL/Source Packageとquery metadata | 必要 | 必要 | 指定形式のfile/標準出力 |
+| Live export: `cmd/company-catalog` | CSV/JSONL/Source Packageとquery metadata | 必要 | 必要 | 指定形式のfile/標準出力 |
 | Optional legacy: `build_sales_list` | 既存SalesLead adapterとの互換利用例 | 必要 | 必要 | filtered SalesProspect一覧 |
 
 ## Offline / producer
@@ -58,9 +58,9 @@ lookupは引数に法人番号、searchは名称と任意のprefecture code、fe
 ## Export
 
 ```sh
-go run ./cmd/ja-company-export -from 2026-09-01 -to 2026-09-30 \
+go run ./cmd/company-catalog -from 2026-09-01 -to 2026-09-30 \
   -prefecture 13 -format json -output /tmp/companies.json
-go run ./cmd/ja-company-export -from 2026-09-01 -to 2026-09-30 \
+go run ./cmd/company-catalog -from 2026-09-01 -to 2026-09-30 \
   -prefecture 13 -format jsonl -output /tmp/companies.jsonl \
   -manifest /tmp/companies.manifest.json
 ```
