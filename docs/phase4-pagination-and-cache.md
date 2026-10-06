@@ -72,7 +72,7 @@ TDD で追加した際の作業記録。同じ手順で他の Phase（Retry back
 | `not_found` のキャッシュ | しない | TTL 短めで保存 |
 
 **理由**:
-- ライブラリ規約（CLAUDE.md）でルート package に公開 API、internal は実装詳細。
+- リポジトリのGoライブラリ規約では、ルート package を公開 API、internal を実装詳細として扱う。
   `CompanyCache` interface の実装は公開 API 扱い
 - LRU は YAGNI。プロセス内短命キャッシュ前提で十分。永続化や上限が必要なら
   `CompanyCache` interface を自前実装すれば良い
@@ -309,6 +309,4 @@ make fmt && make vet && make lint
 
 - [README.md](../README.md) — SDK 公開仕様
 - [docs/API_CONTRACT_TESTS.md](API_CONTRACT_TESTS.md) — 契約とテストの 1:1 対応表
-- [CLAUDE.md](../CLAUDE.md) — リポジトリ規約（Go ライブラリレイアウト）
-- グローバル `rules/core/go-backend-architecture.md` — 「Go ライブラリのレイアウト」セクション
-- グローバル `rules/core/tdd.md` — Red → Green → Refactor 規約
+- [AGENTS.md](../AGENTS.md) — リポジトリの開発・検証規約
