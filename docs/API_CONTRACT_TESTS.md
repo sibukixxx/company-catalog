@@ -171,8 +171,8 @@
 | manifest が schema / source / source_version / generated_at (UTC) を埋める | `TestNewAnalysisManifestFillsSchemaAndSourceProvenance` | analysis_manifest_test.go |
 | manifest は未指定の query 条件を出力しない | `TestWriteAnalysisManifestOmitsEmptyQueryFilters` | analysis_manifest_test.go |
 | `docs/examples/analysis-manifest.example.json` が契約と一致する | `TestAnalysisManifestExampleMatchesContract` | analysis_manifest_test.go |
-| `ja-company-export -manifest` が record_count / query を記録し、AppID を含めない | `TestRunWritesManifestWithProvenanceAndWithoutAppID` | cmd/ja-company-export/main_test.go |
-| `-manifest` は `-` や `-output` と同じパスを拒否する | `TestParseOptionsRejectsInvalidFormatLimitAndManifestPath` | cmd/ja-company-export/main_test.go |
+| `company-catalog -manifest` が record_count / query を記録し、AppID を含めない | `TestRunWritesManifestWithProvenanceAndWithoutAppID` | cmd/company-catalog/main_test.go |
+| `-manifest` は `-` や `-output` と同じパスを拒否する | `TestParseOptionsRejectsInvalidFormatLimitAndManifestPath` | cmd/company-catalog/main_test.go |
 
 ## カバレッジ指標（参考）
 
