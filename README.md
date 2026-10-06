@@ -166,11 +166,10 @@ Lookupは法人番号・法人名・所在地・更新日を、Searchは候補�
 
 ```sh
 # Public化前は認証済みprivate module設定が必要です。
-go get github.com/sibukixxx/company-catalog@v0.1.0
+go get github.com/sibukixxx/company-catalog@latest
 ```
 
-`v0.1.0`は既存tagのcore APIを指します。このREADMEのSource Packageと新しいExamplesは現mainの機能です。
-公開前の新version候補は[release方針](docs/RELEASING.md)を参照してください。
+初回公開releaseはfresh repository上で作成します。現在のrelease方針は[RELEASING.md](docs/RELEASING.md)を参照してください。
 
 ```go
 import houjin "github.com/sibukixxx/company-catalog"
