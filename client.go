@@ -2,7 +2,7 @@ package houjin
 
 import (
 	"context"
-	"fmt"
+	"strconv"
 	"io"
 	"net/http"
 	"net/url"
@@ -91,6 +91,6 @@ func mapStatusToAPIError(status int) error {
 	return &APIError{
 		Code:       code,
 		StatusCode: status,
-		Message:    fmt.Sprintf("upstream returned status %d", status),
+		Message:    "upstream returned status " + strconv.Itoa(status),
 	}
 }
