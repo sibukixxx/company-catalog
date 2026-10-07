@@ -10,6 +10,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -33,15 +34,20 @@ type seedSpec struct {
 }
 
 func main() {
+	if err := run(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+}
+
+func run() error {
 	appID := strings.TrimSpace(os.Getenv("HOUJIN_APP_ID"))
 	if appID == "" {
-		fmt.Fprintln(os.Stderr, "ERROR: HOUJIN_APP_ID is not set")
-		os.Exit(1)
+		return errors.New("HOUJIN_APP_ID is not set")
 	}
 
 	if err := os.MkdirAll(outputDir, 0o755); err != nil {
-		fmt.Fprintf(os.Stderr, "mkdir %s: %v\n", outputDir, err)
-		os.Exit(1)
+		return fmt.Errorf("create seed output directory: %w", err)
 	}
 
 	specs := []seedSpec{
@@ -85,24 +91,22 @@ func main() {
 
 	for _, spec := range specs {
 		if err := fetchAndSave(ctx, hc, spec); err != nil {
-			// AppID をログに出さないため、エラー文字列に URL を含めない
-			fmt.Fprintf(os.Stderr, "FAIL %s: %v\n", spec.name, err)
-			os.Exit(1)
+			return fmt.Errorf("fetch %s: %w", spec.name, err)
 		}
 		fmt.Printf("OK   %s -> %s/%s.xml\n", spec.name, outputDir, spec.name)
 	}
+	return nil
 }
-
 func fetchAndSave(ctx context.Context, hc *http.Client, spec seedSpec) error {
 	endpoint := defaultBaseURL + spec.path + "?" + spec.q.Encode()
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
-		return fmt.Errorf("build request: %w", err)
+		return errors.New("build request failed")
 	}
 
 	resp, err := hc.Do(req)
 	if err != nil {
-		return fmt.Errorf("http: %w", err)
+		return errors.New("HTTP request failed")
 	}
 	defer func() { _ = resp.Body.Close() }()
 
@@ -111,7 +115,7 @@ func fetchAndSave(ctx context.Context, hc *http.Client, spec seedSpec) error {
 		return fmt.Errorf("read body: %w", err)
 	}
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		return fmt.Errorf("upstream returned status %d", resp.StatusCode)
+		return errors.New("upstream returned non-success status")
 	}
 
 	out := filepath.Join(outputDir, spec.name+".xml")
