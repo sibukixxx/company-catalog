@@ -97,6 +97,7 @@ func run() error {
 	}
 	return nil
 }
+
 func fetchAndSave(ctx context.Context, hc *http.Client, spec seedSpec) error {
 	endpoint := defaultBaseURL + spec.path + "?" + spec.q.Encode()
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
