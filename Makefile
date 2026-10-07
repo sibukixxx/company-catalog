@@ -66,6 +66,9 @@ lint-fix: install-golangci-lint ## Run golangci-lint --fix
 .PHONY: fix
 fix: fmt lint-fix vet ## Apply all auto fixes
 
+.PHONY: release-check
+release-check: test vet build lint ## Run the deterministic OSS release gate
+
 ###############################################################################
 ### test
 ###############################################################################
