@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 	"strings"
 	"sync"
 	"testing"
@@ -156,7 +157,7 @@ func TestFetchProfilesStopsAtMaxDivideToAvoidInfiniteLoop(t *testing.T) {
 		if v := r.URL.Query().Get("divide"); v != "" {
 			fmt.Sscanf(v, "%d", &page)
 		}
-		_, _ = io.WriteString(w, paginatedXML(page, 100, fmt.Sprintf("100000000000%d", page%10)))
+		_, _ = io.WriteString(w, paginatedXML(page, 100, "100000000000" + strconv.Itoa(page%10)))
 	})
 	c, _ := NewClient(Config{AppID: "test", BaseURL: srv.URL, HTTPClient: hc})
 

@@ -3,6 +3,7 @@ package houjin
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"testing"
 )
 
@@ -17,7 +18,7 @@ func TestAPIErrorErrorMessageContainsCodeAndMessage(t *testing.T) {
 		t.Fatal("Error() returned empty string")
 	}
 	for _, want := range []string{"not_found", "no result"} {
-		if !contains(msg, want) {
+		if !strings.Contains(msg, want) {
 			t.Errorf("Error() = %q, missing %q", msg, want)
 		}
 	}
@@ -48,11 +49,3 @@ func TestAPIErrorWorksWithErrorsAs(t *testing.T) {
 	}
 }
 
-func contains(s, sub string) bool {
-	for i := 0; i+len(sub) <= len(s); i++ {
-		if s[i:i+len(sub)] == sub {
-			return true
-		}
-	}
-	return false
-}
