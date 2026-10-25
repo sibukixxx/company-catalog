@@ -48,4 +48,3 @@ func TestAPIErrorWorksWithErrorsAs(t *testing.T) {
 		t.Errorf("got code %q, want %q", got.Code, ErrorCodeRateLimited)
 	}
 }
-
