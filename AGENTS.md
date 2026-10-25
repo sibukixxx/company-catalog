@@ -44,3 +44,8 @@ Go library/CLI foundation for acquiring and normalizing Japanese corporate-numbe
 - Offline tests/lint pass.
 - Live checks are reported separately as run/not-run; no credential value is exposed.
 - Public behavior changes are reflected in tests/docs.
+
+
+- When a repository's documentation and its existing code disagree, follow the conventions used in the existing code, and in your final reply point out each inconsistency you found between the documentation and the code.
+
+- 不要なセカンダリラベルや説明を避ける。レイアウトに説明させる。
