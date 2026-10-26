@@ -119,7 +119,7 @@ NTA Corporate Number API → company-catalog → typed Company / versioned Sourc
 | versioned Source Package、mock/test | InsightのResearch semantics |
 
 正規化はupstream fieldを型へ写す範囲です。法人名の曖昧matching、業種・売上・websiteの補完は実装していません。
-既存`adapters/saleslead`は互換性のため残すoptional downstream adapterです。新しい営業機能は追加しません。
+営業リスト変換・適格性・案件管理はprivate consumer `ja-company-outreach/internal/saleslead`へ移しました。公開SDKは法人データの取得・正規化・出力を担当します。
 
 ## Quick start — credentialなしで試す
 
