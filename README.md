@@ -16,7 +16,7 @@ CRM、営業スコアリング、企業情報の推測補完は行いません�
 
 ## Install
 
-Go 1.26.8+ が必要です。
+Go 1.26.10+ が必要です。
 
 ```sh
 git clone https://github.com/sibukixxx/company-catalog.git
@@ -123,7 +123,7 @@ NTA Corporate Number API → company-catalog → typed Company / versioned Sourc
 
 ## Quick start — credentialなしで試す
 
-Goの必要versionは[go.mod](go.mod)に記載しています（現在Go 1.26.8以上）。
+Goの必要versionは[go.mod](go.mod)に記載しています（現在Go 1.26.10以上）。
 初回のtoolchain取得にはnetworkが必要になる場合があります。以下のExamples自体はnetworkを使いません。
 Public化前のcloneには、このrepoへのアクセス権が必要です。
 
