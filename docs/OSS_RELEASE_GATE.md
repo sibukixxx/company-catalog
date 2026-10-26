@@ -68,9 +68,9 @@ fixture. Outreach reads it without producer DB access and exports two rows.
 No public API signature, source-package schema or Sales handoff field changes.
 
 The former Go 1.26.2 minimum produced ten reachable standard-library findings
-in govulncheck. The minimum is now Go 1.26.8; govulncheck reports no
+in govulncheck. The minimum is now Go 1.26.10; govulncheck reports no
 vulnerabilities for this tree. Consumers building this revision also need
-Go 1.26.8 or newer. This scan result is dated evidence, not a continuing
+Go 1.26.10 or newer. This scan result is dated evidence, not a continuing
 vulnerability-free guarantee.
 
 Repository preparation does not complete #7: the PR must be reviewed/merged,

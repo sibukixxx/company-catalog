@@ -7,7 +7,7 @@ not an AnalyticalArtifact, research conclusion or company founding judgment.
 
 ## Run
 
-Go requirement: see go.mod (currently Go 1.26.8). Offline clone verification:
+Go requirement: see go.mod (currently Go 1.26.10). Offline clone verification:
 
 ```sh
 make test
@@ -96,8 +96,7 @@ execution or analytical ingestion. That remains downstream's integration step.
 
 Outreach maps available fields to its existing Targets and Sales handoff;
 website/contact fields and eligibility stay there. The pre-existing
-adapters/saleslead compatibility package is retained to avoid breaking existing
-users; no new sales policy is added to it. New producer contracts are consumer-neutral.
+Sales-list conversion and eligibility are owned by the private ja-company-outreach consumer. Its internal/saleslead package and real exporter tests cover the transferred behavior. No sales adapter is shipped in this SDK.
 
 ## Time semantics (public consumer reference)
 

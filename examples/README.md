@@ -13,7 +13,6 @@ SDKの型を確認したい場合は先頭2本を実行し、live APIやdownstre
 | Live: `search_by_name` | upstream name matchingと地域filter | 必要 | 必要 | 候補件数・番号・名称・住所 |
 | Live: `fetch_diff` | 指定期間のupstream更新情報を読む | 必要 | 必要 | 期間、件数、先頭最大5件 |
 | Live export: `cmd/company-catalog` | CSV/JSONL/Source Packageとquery metadata | 必要 | 必要 | 指定形式のfile/標準出力 |
-| Optional legacy: `build_sales_list` | 既存SalesLead adapterとの互換利用例 | 必要 | 必要 | filtered SalesProspect一覧 |
 
 ## Offline / producer
 
@@ -68,15 +67,9 @@ go run ./cmd/company-catalog -from 2026-09-01 -to 2026-09-30 \
 JSONはmanifest内包のSource Package、JSONLは1行1AnalysisRecordです。CSVは`-format csv`に切り替えます。
 query/date・record count・completenessをconsumerへ渡し、LIMITEDを人口全体とみなさないでください。
 
-## Optional legacy SalesLead example
+## Sales workflows
 
-```sh
-go run ./examples/build_sales_list example-case トヨタ 23
-```
-
-`adapters/saleslead`とこの例は既存consumerを壊さないために保持しています（Option B）。
-canonical SDKの責務は法人データの取得・正規化・出力です。新しい営業判断・workflowはoutreach/Sales側に置きます。
-この例は送信を行いません。SDKが連絡先や営業の適格性を保証することもありません。
+Sales-list construction now lives in the private `ja-company-outreach` consumer (`examples/build_sales_list` and `internal/saleslead`). This SDK provides normalized company data and Source Package artifacts only.
 
 ## Fixturesの配置
 

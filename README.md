@@ -16,7 +16,7 @@ CRM、営業スコアリング、企業情報の推測補完は行いません�
 
 ## Install
 
-Go 1.26.8+ が必要です。
+Go 1.26.10+ が必要です。
 
 ```sh
 git clone https://github.com/sibukixxx/company-catalog.git
@@ -119,11 +119,11 @@ NTA Corporate Number API → company-catalog → typed Company / versioned Sourc
 | versioned Source Package、mock/test | InsightのResearch semantics |
 
 正規化はupstream fieldを型へ写す範囲です。法人名の曖昧matching、業種・売上・websiteの補完は実装していません。
-既存`adapters/saleslead`は互換性のため残すoptional downstream adapterです。新しい営業機能は追加しません。
+営業リスト変換・適格性・案件管理はprivate consumer `ja-company-outreach/internal/saleslead`へ移しました。公開SDKは法人データの取得・正規化・出力を担当します。
 
 ## Quick start — credentialなしで試す
 
-Goの必要versionは[go.mod](go.mod)に記載しています（現在Go 1.26.8以上）。
+Goの必要versionは[go.mod](go.mod)に記載しています（現在Go 1.26.10以上）。
 初回のtoolchain取得にはnetworkが必要になる場合があります。以下のExamples自体はnetworkを使いません。
 Public化前のcloneには、このrepoへのアクセス権が必要です。
 

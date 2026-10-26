@@ -23,7 +23,7 @@ TDD で追加した際の作業記録。同じ手順で他の Phase（Retry back
 | 項目 | 用途 |
 |---|---|
 | `HOUJIN_APP_ID` | E2E + `make seed` の実行に必須。Secret 管理 |
-| Go 1.26.2 以上 | `go.mod` 準拠 |
+| Go 1.26.10 以上 | `go.mod` 準拠 |
 | `make setup` 実行済み | golangci-lint v2.11.4 + gofumpt |
 
 ### スコープ確定の判断材料

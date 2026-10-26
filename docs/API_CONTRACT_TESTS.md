@@ -121,10 +121,9 @@
 | `internal/xmlapi.Corporation` が外部 package に漏れない | `internal/` 配下は import パス上 root package と adapters/ から見える。client.go から `xmlapi` 経由で呼んでも、`Corporation` は `corporationToProfile` で `CompanyProfile` に変換されてから返るため公開 API には現れない |
 | XML パーサ単体は 100% カバレッジ | `internal/xmlapi/parser_test.go`、`go test -cover` で確認 |
 
-## 11. adapters/saleslead
+## 11. Downstream sales contract
 
-`adapters/saleslead` の `BuildList` / `FromCompanyProfile` は I/O・mutation を持たない
-純粋関数。`adapters/saleslead/saleslead_test.go` で 100% カバレッジ。
+Sales eligibility and list construction moved to private `ja-company-outreach/internal/saleslead`, including the former regression tests. The real exporter and Source Package consumer were tested against company-catalog.
 
 ## 12. 分割応答の自動結合（Phase 4）
 
@@ -179,7 +178,6 @@
 ```
 $ make test-cover
 github.com/sibukixxx/company-catalog                     coverage: 95.4%
-github.com/sibukixxx/company-catalog/adapters/saleslead  coverage: 100.0%
 github.com/sibukixxx/company-catalog/internal/xmlapi     coverage: 100.0%
 ```
 
