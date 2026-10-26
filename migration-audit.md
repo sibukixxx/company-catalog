@@ -1,24 +1,24 @@
-# Migration audit — company-catalog
+# OSS migration verification — company-catalog
 
-監査日: 2026-10-25。作業中の記録。未実施・未完了を成功扱いしない。
+検証日: 2026-10-26。実装コードの検証対象head: `9412b575b8962277239c087e837c56a9044162bb`。本書の追記commitは資料のみ。
 
-## 正本と比較対象
+## 実装と実行結果
 
-- 正本: sibukixxx/company-catalog, main `804249e0bf6dac000708c7e269e308b973fc17fb`
-- 旧実装: sibukixxx/ja-company-base, main `d40bd8dd2d38a5f4f1eaae987174d6a11d74ac38`
-- 比較単位: 機能・API・入出力契約。名称変更後のファイルだけを機械的に欠落判定しない。
+- `make test vet build`、golangci-lint、govulncheck: 成功（Go 1.26.10）。
+- READMEのoffline読み取り・再export・Insight Public Engine v1 schema検証: 成功。
+- private ja-company-outreachへsalesleadと例・回帰テストを移設。実consumerのtest/vet/build/lintと新producer Source Package→Sales CSV接続: 成功。SDKから営業実装を除去。
+- 国税庁live API: AppID未設定につき未実施。offline検証と区別する。
 
-国税庁v4の取得・法人番号/法人名検索・差分取得・CSV/JSONL・Source Package v1のコアを保持。新正本の認証情報を隠すエラー処理を旧版で上書きしない。営業リストadapterと実利用consumerの分離は未完了。
+## 公開前監査
 
-## 今回の修正と検証
+- GitHub APIで全refs（main、作業branch、残存branch、PR head参照）と到達可能なcommitのtreeを列挙。列挙時点で77 commits / 142 unique blobsを取得、欠落・truncated treeなし。以降の当作業commitは現行tree検査と併せて確認。
+- Gitleaks既定ruleで履歴の全blobとcommit metadataを検査。secret検出なし。
+- PR最終treeは全fileを用意してGitleaks成功。localの検証対象sourceとGitHub PR headのblob hash一致を確認。
+- 全履歴のauthorはYuichi Takada、メールは866555+sibukixxx@users.noreply.github.com。LICENSEはMIT。
+- CI startup_failureはテスト実行前の起動失敗。CI成功とは記録せず、上記local gateを代替証拠とする。既存CIは削除していない。
 
-Goの最低版を1.26.10へ更新。既知の標準ライブラリ脆弱性に対応。既存CIは保持し、startup_failureをコードテスト失敗と混同しない。Cloudflare CI移行はplatform #41/#60の検証後に別途確定する。
+## 未完了の公開操作
 
-- テスト・vet・lint・build: 実行中。結果はこのファイルに追記する。
-- govulncheck: 実行予定。
-- 現行ツリー/公開予定全Git履歴のsecret scan、author表示名・メール確認: 公開前の再確認が必要。
-- README Quick Start/外部consumer/ライセンス/リリースtag: 最終確認が必要。
-- Public化、匿名clone、Release: 未実施。ゲート未完了のまま公開しない。
-- 旧リポジトリ: 保全。削除・archive・force pushは行わない。
+4正本はPrivate。Public化・Release作成・匿名clone/downloadは未実施。GitHub connectorはadministration/Release作成を提供せず、ブラウザは未ログイン。移行公開完了とは扱わない。公開後に匿名repository/README/LICENSE/Release/Quick Startを再検証して公式サイトをAvailableへ変更する。
 
-環境リセット前の検証結果は現在の作業ツリーの成功証拠として流用しない。
+予定初回tag: v0.1.0。旧repoは削除・archiveせず、共有履歴のforce pushなし。未完了Issueを閉じない。DNS・メール・他Workers/Pages・顧客環境は変更していない。
