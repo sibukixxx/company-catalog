@@ -1,12 +1,8 @@
 name: govulncheck
 
+# Cost guard: run vulnerability scan only on explicit manual request.
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: "0 1 * * *"  # 毎日 10:00 JST に依存脆弱性スキャン
+  workflow_dispatch:
 
 permissions:
   contents: read

@@ -2,9 +2,7 @@ name: E2E
 
 on:
   workflow_dispatch:
-  schedule:
-    # 毎週月曜 09:00 JST (= 00:00 UTC) に upstream API への疎通確認を回す
-    - cron: "0 0 * * 1"
+  # Automatic weekly upstream test paused to avoid idle Actions usage.
 
 permissions:
   contents: read

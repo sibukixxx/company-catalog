@@ -6,11 +6,20 @@ name: CI
 # - lint → test の依存チェーンで lint 失敗時は test を流さない
 # - 全 action は SHA pin + バージョンコメント
 
+# Cost guard: ignore docs and workflow-only changes; preserve source validation.
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - '.github/workflows/**'
   pull_request:
     branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 permissions:
